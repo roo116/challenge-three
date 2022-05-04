@@ -6,27 +6,37 @@ var strAlphaSmall = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 var num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var spcChar = ['~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '}', '{', ']', '[', ';', ':', '?', '/', '>', '<', '.', ',']
 
+//global variables
+var btn = document.querySelector("button");
 
 //prompt for the number of characters
 
 
-var numCheck = function () {
-  val = Number(numChar) ;
-  
-  if (val === NaN || val === "") {
-    alert("You need to enter a whole number.  Please try again")  
-  }
+function numCheck (val) {
+  var val = prompt("How many characters do you want your password to be? Please enter a number between 8 and 128");
+  if(val === null) {
+    alert("Ok.  Have a great day!!!");
+    return;
+  } 
 
-  else if(Number.isInteger(val) !== true) {
-    alert("You need to enter a whole number.  Please try again");
+  val = Number(val)
+  console.log(val);
+  
+  if (!val || val < 8 || val > 128  || Number.isInteger(val) !== true) {
+    // || val < 8 || !Number.isInteger(val)) {
+    alert("Ok.  So you need to enter a number between 8 and 128.  You know?  Like the sign said?")
+    return numCheck()
   }
   else{
     window.alert("Your password will be " + val + " characters long.");
     }
   };
 
-  var numChar = window.prompt("How many characters do you want your password to be?");
-numCheck();
+
+  btn.addEventListener("click", numCheck)
+  // var numChar = window.prompt("How many characters do you want your password to be?");
+
+
 
 
 
