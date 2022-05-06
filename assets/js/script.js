@@ -5,38 +5,48 @@ var strAlphaCap = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', '
 var strAlphaSmall = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var spcChar = ['~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '|', '}', '{', ']', '[', ';', ':', '?', '/', '>', '<', '.', ',']
-
+// var questions ["How many characters do you want your password to be?", ""]
 //global variables
 var btn = document.querySelector("button");
 
 //prompt for the number of characters
+var pwdLength = 0;
 
-
-function numCheck (val) {
+function numCheck() {
   var val = prompt("How many characters do you want your password to be? Please enter a number between 8 and 128");
-  if(val === null) {
+  if (val === null) {
     alert("Ok.  Have a great day!!!");
     return;
-  } 
+  }
 
   val = Number(val)
   console.log(val);
-  
-  if (!val || val < 8 || val > 128  || Number.isInteger(val) !== true) {
+
+  if (!val || val < 8 || val > 128 || Number.isInteger(val) !== true) {
     // || val < 8 || !Number.isInteger(val)) {
     alert("Ok.  So you need to enter a number between 8 and 128.  You know?  Like the sign said?")
     return numCheck()
   }
-  else{
-    window.alert("Your password will be " + val + " characters long.");
-    }
-  };
+  else {
+    alert("Your password will be " + val + " characters long.");
+  }
+
+  pwdLength = val
+};
+
+numCheck();
+console.log(">>> this is the password length " + pwdLength);
+
+btn.addEventListener("click", numCheck)
+
+// var numChar = window.prompt("How many characters do you want your password to be?");
+
+// function getChar() {
+  
 
 
-  btn.addEventListener("click", numCheck)
-  // var numChar = window.prompt("How many characters do you want your password to be?");
 
-
+// }
 
 
 
