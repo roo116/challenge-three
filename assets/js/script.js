@@ -108,6 +108,8 @@ var pwdLength = 0;
 // }
 
 function makeThatPassword() {
+  alert("Alrighty!! Are you digging all of these prompts? (Don't answer that!!).  Here comes your password!!!");
+
 
 }
 
@@ -118,7 +120,7 @@ function generatePwdArray() {
   console.log("now we are in the generatePwdArray function " + newArray);
 
   var ucase = confirm(
-    "do you want uppercase letters in the password? Click OK for YES or Cancel for No."
+    "do you want uppercase letters in the password? Click OK for YES or Cancel for NO."
   );
   if (!ucase) {
     alert("You will have no uppercase letters in the password.");
@@ -148,7 +150,7 @@ function generatePwdArray() {
     console.log(menuItem);
   }
 
-  var special = confirm("And finally, what about special characters.  OK for Yes.  Cancel for No.");
+  var special = confirm("And finally, what about special characters.  OK for YES.  Cancel for NO.");
   if (!special) {
     alert("You will have no special characters in your password.");
   } else {
@@ -157,7 +159,7 @@ function generatePwdArray() {
     console.log(menuItem);
   }
 
-  
+
   console.log(items)
 
   // for (i=0; i < menuItems.length; i++) 
@@ -171,14 +173,16 @@ function generatePwdArray() {
     else {
       return generatePwdArray()
     }
-  } 
+  }
   else {
     var items = menuItem.join()
-    reset = confirm("You have selected the following: " + items +".  If this is correct hit OK, otherwise hit cancel to select differnt options");
+    reset = confirm("You have selected the following: " + items + ".  If this is correct hit OK, otherwise hit cancel to select different options");
     if (!reset) {
-      return generatePwdArray;      
+      return generatePwdArray();
     }
-  } 
+  }
+
+  makeThatPassword();
 };
 
 function numCheck() {
@@ -204,56 +208,15 @@ function numCheck() {
     );
     return numCheck();
   } else {
-    alert(
-      "Cool.  Your password is going to be " + pwdLength + " characters long."
-    );
-  }
+    if (pwdLength > 15) {
+      alert("You password is going to be " + pwdLength + " characters long.  Good luck remembering that one! :)")
+    } else {
+      alert(
+        "Cool.  Your password is going to be " + pwdLength + " characters long."
+      );
+    }
+  };
   generatePwdArray();
 };
 
-
-
-// function createPasswordArray() {
-//   var ucase = confirm("do you want uppercase characters in your password? Click OK for 'yes' or Cancel for 'no'");
-//   console.log(">> Inside the function ucase is " + ucase);
-//   if (!ucase) {
-//     alert("No caps for you!!!");
-//     return;
-//   } else {
-//     alert("You will have capital letters in your password");
-//     var newArray = []
-
-//   }
-// }
-
-//   ucase = Number(ucase)
-//   if (ucase !== null)
-//     ucase = Number(ucase)
-// }
-
 btn.addEventListener("click", numCheck);
-
-// var numChar = window.prompt("How many characters do you want your password to be?");
-
-// function getChar() {
-
-// }
-
-//prompt for numbers
-
-//prompt for special characters
-
-// Get references to the #generate element
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
