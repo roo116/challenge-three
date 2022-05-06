@@ -8,34 +8,58 @@ var spcChar = ['~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', 
 // var questions ["How many characters do you want your password to be?", ""]
 //global variables
 var btn = document.querySelector("button");
+var pwdLength = 0;
+var ucase = 0;
+var lcase = 0;
+
 
 //prompt for the number of characters
-var pwdLength = 0;
+// function inputCheck (data) {
+//   if (!data) {
+//       confirm("You didn't enter anything. Try again!")
+//     if (!ask) {
+//       alert("Ok.  Have a great day!!!")
+//       return
+//     } el
+
+ 
+
+// }
+
 
 function numCheck() {
-  var val = prompt("How many characters do you want your password to be? Please enter a number between 8 and 128");
-  if (val === null) {
-    alert("Ok.  Have a great day!!!");
-    return;
-  }
+  pwdLength = prompt("How many characters do you want your password to be?  Please enter a number between 8 and 128");
+    if( pwdLength !== null ){
+      pwdLength = Number(pwdLength);
+      if (pwdLength < 8 || pwdLength > 128 || Number.isInteger(pwdLength) !== true) {
+        alert("Ok.  So you need to enter a number between 8 and 128.  You know?  Like the sign said?")
+            return numCheck() 
+      }else {
+        alert("Cool.  Your password is going to be " + pwdLength + " characters long.");
+      }
+    } else {
+      alert("You hit cancel.  So we are going to just go quiet.  Click the 'Generate Password' button to restart.  Have a good day!!!");
+      return;
+    };
+      
+            
+}
 
-  val = Number(val)
-  console.log(val);
 
-  if (!val || val < 8 || val > 128 || Number.isInteger(val) !== true) {
-    // || val < 8 || !Number.isInteger(val)) {
-    alert("Ok.  So you need to enter a number between 8 and 128.  You know?  Like the sign said?")
-    return numCheck()
-  }
-  else {
-    alert("Your password will be " + val + " characters long.");
-  }
+//   pwdLength = Number(pwdLength);
 
-  pwdLength = val
-};
+//   
+//   }
+//   else {
+//     alert("Your password will be " + pwdLength + " characters long.");
+//   }
 
-numCheck();
-console.log(">>> this is the password length " + pwdLength);
+//   pwdLength = pwdLength
+// };
+
+function ucaseCheck() {
+  ucase = prompt("how many uppercase characters would you like in your password?");
+}
 
 btn.addEventListener("click", numCheck)
 
