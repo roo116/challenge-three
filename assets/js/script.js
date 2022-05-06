@@ -86,9 +86,9 @@ var spcChar = [
   ">",
   "<",
   ".",
-  ",",
 ];
 var newArray = [];
+console.log("from initial declaration of variable " + newArray);
 // var questions ["How many characters do you want your password to be?", ""]
 //global variables
 var btn = document.querySelector("button");
@@ -107,62 +107,83 @@ var pwdLength = 0;
 
 // }
 
+function makeThatPassword() {
+
+}
+
 function generatePwdArray() {
 
+  newArray = [];
+  var menuItem = []
+  console.log("now we are in the generatePwdArray function " + newArray);
+
   var ucase = confirm(
-    "do you want capital letters in the password? Click OK for YES or Cancel for No"
+    "do you want uppercase letters in the password? Click OK for YES or Cancel for No."
   );
   if (!ucase) {
-    alert("you will have no caps in the password");
+    alert("You will have no uppercase letters in the password.");
   } else {
     for (i = 0; i < strAlphaCap.length; i++) newArray.push(strAlphaCap[i]);
-    console.log(newArray);
+    menuItem.push("Uppercase Letters");
+    console.log(menuItem);
   }
 
   var lcase = confirm(
-    "how about lower case letters?  Same deal.  Click OK for YES or Cancel for NO. "
+    "How about lowercase letters?  Same deal.  Click OK for YES or Cancel for NO. "
   );
   if (!lcase) {
-    alert("you will have no lower case letters in your password.");
+    alert("You will have no lowercase letters in your password.");
   } else {
     for (i = 0; i < strAlphaSmall.length; i++) newArray.push(strAlphaSmall[i]);
-    console.log(newArray);
+    menuItem.push(" Lowercase Letters");
+    console.log(menuItem);
   }
 
-  var numeric = confirm("And how about numbers?  Ok for YES.  Cancel for NO");
+  var numeric = confirm("And what about numbers?  Would you like some numbers? Ok for YES.  Cancel for NO.");
   if (!numeric) {
-    alert("you will have no numbers in your password");
+    alert("You will have no numbers in your password.");
   } else {
     for (i = 0; i < num.length; i++) newArray.push(num[i]);
-    console.log(newArray);
+    menuItem.push(" Numbers");
+    console.log(menuItem);
   }
 
-  var special = confirm("And finally, what about special characters.  OK for Yes.  Cancel for No");
+  var special = confirm("And finally, what about special characters.  OK for Yes.  Cancel for No.");
   if (!special) {
-    alert("you will have no special characters in your password");
+    alert("You will have no special characters in your password.");
   } else {
     for (i = 0; i < spcChar.length; i++) newArray.push(spcChar[i]);
-    console.log(newArray);
+    menuItem.push(" Special Characters");
+    console.log(menuItem);
   }
+
+  
+  console.log(items)
+
+  // for (i=0; i < menuItems.length; i++) 
 
   if (!ucase && !lcase && !numeric && !special) {
     var exitApp = confirm("Wait.  What?  You didn't select anything.  You need to select some type of character.  Click OK to try again or Cancel to exit");
     if (!exitApp) {
-      alert("Thanks for playing!!");
+      alert("Ok.  Be that way.  Just leave without a password.. :( ");
       return;
     }
     else {
-      generatePwdArray()
+      return generatePwdArray()
     }
-
-  }
-
-
+  } 
+  else {
+    var items = menuItem.join()
+    reset = confirm("You have selected the following: " + items +".  If this is correct hit OK, otherwise hit cancel to select differnt options");
+    if (!reset) {
+      return generatePwdArray;      
+    }
+  } 
 };
 
 function numCheck() {
   pwdLength = prompt(
-    "How many characters do you want your password to be?  Please enter a number between 8 and 128"
+    "How many characters do you want your password to be?  Please enter a number between 8 and 128."
   );
   if (pwdLength === null) {
     alert(
@@ -179,7 +200,7 @@ function numCheck() {
     Number.isInteger(pwdLength) !== true
   ) {
     alert(
-      "Ok.  So you need to enter a number between 8 and 128.  You know?  Like the sign said?"
+      "Ok.  So you need to enter a number between 8 and 128.  You know?  Like the prompt said?"
     );
     return numCheck();
   } else {
