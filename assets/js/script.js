@@ -87,12 +87,15 @@ var spcChar = [
   "<",
   ".",
 ];
-var newArray = [];
-console.log("from initial declaration of variable " + newArray);
+var possibleCharacters = [];
+console.log("from initial declaration of variable " + possibleCharacters);
 // var questions ["How many characters do you want your password to be?", ""]
 //global variables
 var btn = document.querySelector("button");
 var pwdLength = 0;
+var newPwd = [];
+var randomIdx = [];
+var randomEl = [];
 // var ucase = true;
 // var lcase = true;
 
@@ -108,24 +111,53 @@ var pwdLength = 0;
 // }
 
 function makeThatPassword() {
+  generatePassword = [];
+  newPwd = [];
   alert("Alrighty!! Are you digging all of these prompts? (Don't answer that!!).  Here comes your password!!!");
+// console.log("This one is from the makeThatPassword function ");
+// console.log(possibleCharacters);
 
-
+for (var i = 0; i < pwdLength; i++) {
+  //this is getting random numbers and stufff from possibleCharacters
+  var randomIdx = Math.floor(Math.random() * possibleCharacters.length);
+  //what gets logged are the numbers that the function is randomly generating based on length of possibleCharacters[].
+  console.log(randomIdx)
+  //what gets placed in here is the array character associated with the number from randomIdx
+  var randomEl = possibleCharacters[randomIdx];
+//and these are being logged here
+  console.log(randomEl);
+  // so now I need to get each of those randonLtr values pushed into an array ...
+  newPwd.push(randomEl);
+  //console.log(newPwd);
 }
+console.log("new password values are " + newPwd);
+// console.log(newPwd);
+
+// ... and then joined into a string
+newPwd = newPwd.join('');
+
+
+  // newPwd = Array.join(randomLtr);
+  // console.log(newPwd);
+ 
+  // newPwd = newPwd.push(randomIdx);
+  // console.log(newPwd);
+
+  // possibleCharactersArray.push(...numberArray)
+};
 
 function generatePwdArray() {
 
-  newArray = [];
+  possibleCharacters = [];
   var menuItem = []
-  console.log("now we are in the generatePwdArray function " + newArray);
 
   var ucase = confirm(
-    "do you want uppercase letters in the password? Click OK for YES or Cancel for NO."
+    "Would you like uppercase letters in the password?  Click OK for YES or Cancel for NO."
   );
   if (!ucase) {
     alert("You will have no uppercase letters in the password.");
   } else {
-    for (i = 0; i < strAlphaCap.length; i++) newArray.push(strAlphaCap[i]);
+    for (var i = 0; i < strAlphaCap.length; i++) possibleCharacters.push(...strAlphaCap[i]);
     menuItem.push("Uppercase Letters");
     console.log(menuItem);
   }
@@ -136,31 +168,28 @@ function generatePwdArray() {
   if (!lcase) {
     alert("You will have no lowercase letters in your password.");
   } else {
-    for (i = 0; i < strAlphaSmall.length; i++) newArray.push(strAlphaSmall[i]);
+    for (i = 0; i < strAlphaSmall.length; i++) possibleCharacters.push(strAlphaSmall[i]);
     menuItem.push(" Lowercase Letters");
     console.log(menuItem);
   }
 
-  var numeric = confirm("And what about numbers?  Would you like some numbers? Ok for YES.  Cancel for NO.");
+  var numeric = confirm("And what about numbers?  Would you like some numbers?  OK for YES and 'guess' for NO. (Maybe..Cancel?)");
   if (!numeric) {
     alert("You will have no numbers in your password.");
   } else {
-    for (i = 0; i < num.length; i++) newArray.push(num[i]);
+    for (i = 0; i < num.length; i++) possibleCharacters.push(num[i]);
     menuItem.push(" Numbers");
     console.log(menuItem);
   }
 
-  var special = confirm("And finally, what about special characters.  OK for YES.  Cancel for NO.");
+  var special = confirm("And maybe some special characters with that order?  And would that be an OK for YES?  Or a Cancel for NO?");
   if (!special) {
     alert("You will have no special characters in your password.");
   } else {
-    for (i = 0; i < spcChar.length; i++) newArray.push(spcChar[i]);
+    for (i = 0; i < spcChar.length; i++) possibleCharacters.push(spcChar[i]);
     menuItem.push(" Special Characters");
     console.log(menuItem);
   }
-
-
-  console.log(items)
 
   // for (i=0; i < menuItems.length; i++) 
 
@@ -181,7 +210,8 @@ function generatePwdArray() {
       return generatePwdArray();
     }
   }
-
+  console.log("now we are in the generatePwdArray function " + possibleCharacters);
+  console.log(possibleCharacters);
   makeThatPassword();
 };
 
