@@ -97,50 +97,39 @@ var randomEl = [];
 
 var btn = document.querySelector("button");
 
-// display password to index.html
-function postThatPassword() {
-  debugger;
-  var showNewPwdTgt = document.querySelector("textarea");
-  showNewPwdTgt.textContent = newPwd
-  console.log(showNewPwd);
-}
-
+//generate the password
 function makeThatPassword() {
+
+  // clear out some arrays to make sure previous data isn't replicated on a new pass
   generatePassword = [];
   newPwd = [];
+
   alert("Alrighty!! Are you digging all of these prompts? (Don't answer that!!).  Here comes your password!!!");
-// console.log("This one is from the makeThatPassword function ");
-// console.log(possibleCharacters);
 
-for (var i = 0; i < pwdLength; i++) {
-  //this is getting random numbers and stufff from possibleCharacters
-  var randomIdx = Math.floor(Math.random() * possibleCharacters.length);
-  //what gets logged are the numbers that the function is randomly generating based on length of possibleCharacters[].
-  console.log(randomIdx)
-  //what gets placed in here is the array character associated with the number from randomIdx
-  var randomEl = possibleCharacters[randomIdx];
-//and these are being logged here
-  console.log(randomEl);
-  // so now I need to get each of those randonLtr values pushed into an array ...
-  newPwd.push(randomEl);
-  //console.log(newPwd);
-}
-console.log("new password values are " + newPwd);
-// console.log(newPwd);
+  for (var i = 0; i < pwdLength; i++) {
+    //this is getting random numbers and stufff from possibleCharacters
+    var randomIdx = Math.floor(Math.random() * possibleCharacters.length);
+    //what gets placed in here is the array character associated with the number from randomIdx
+    var randomEl = possibleCharacters[randomIdx];
+    // so now I need to get each of those randonLtr values pushed into an array ...
+    newPwd.push(randomEl);
+  }
 
-// ... and then joined into a string
-newPwd = newPwd.join('');
-alert("Your new password is " + newPwd);
+  // ... and then joined into a string
+  newPwd = newPwd.join('');
 
-postThatPassword();
-
+  document.querySelector("textarea").textContent = newPwd;
 };
 
+// merge arrays into possible character array based on selections
 function generatePwdArray() {
 
   possibleCharacters = [];
   var menuItem = []
 
+  //START prompts...
+
+  //uppercase
   var ucase = confirm(
     "Would you like uppercase letters in the password?  Click OK for YES or Cancel for NO."
   );
@@ -149,9 +138,9 @@ function generatePwdArray() {
   } else {
     for (var i = 0; i < strAlphaCap.length; i++) possibleCharacters.push(...strAlphaCap[i]);
     menuItem.push("Uppercase Letters");
-    console.log(menuItem);
   }
 
+  // lowercase
   var lcase = confirm(
     "How about lowercase letters?  Same deal.  Click OK for YES or Cancel for NO. "
   );
@@ -160,29 +149,27 @@ function generatePwdArray() {
   } else {
     for (i = 0; i < strAlphaSmall.length; i++) possibleCharacters.push(strAlphaSmall[i]);
     menuItem.push(" Lowercase Letters");
-    console.log(menuItem);
   }
 
+  // numeric
   var numeric = confirm("And what about numbers?  Would you like some numbers?  OK for YES and 'guess' for NO. (Maybe..Cancel?)");
   if (!numeric) {
     alert("You will have no numbers in your password.");
   } else {
     for (i = 0; i < num.length; i++) possibleCharacters.push(num[i]);
     menuItem.push(" Numbers");
-    console.log(menuItem);
   }
 
+  // special characters
   var special = confirm("And maybe some special characters with that order?  And would that be an OK for YES?  Or a Cancel for NO?");
   if (!special) {
     alert("You will have no special characters in your password.");
   } else {
     for (i = 0; i < spcChar.length; i++) possibleCharacters.push(spcChar[i]);
     menuItem.push(" Special Characters");
-    console.log(menuItem);
   }
 
-  // for (i=0; i < menuItems.length; i++) 
-
+  // if nothing has been selected, confirm and exit or recycle
   if (!ucase && !lcase && !numeric && !special) {
     var exitApp = confirm("Wait.  What?  You didn't select anything.  You need to select some type of character.  Click OK to try again or Cancel to exit");
     if (!exitApp) {
@@ -194,18 +181,25 @@ function generatePwdArray() {
     }
   }
   else {
+
+    //confirmation that selected items are correct. if not recycle
     var items = menuItem.join()
     reset = confirm("You have selected the following: " + items + ".  If this is correct hit OK, otherwise hit cancel to select different options");
     if (!reset) {
       return generatePwdArray();
     }
   }
-  console.log("now we are in the generatePwdArray function " + possibleCharacters);
-  console.log(possibleCharacters);
+
+  // launch the generate password function
+
   makeThatPassword();
+
 };
 
+// get and confirm the length of the password
 function numCheck() {
+
+  // prompt for pw length
   pwdLength = prompt(
     "How many characters do you want your password to be?  Please enter a number between 8 and 128."
   );
@@ -216,8 +210,9 @@ function numCheck() {
     return;
   }
 
+  // make it a number and check it's value
   pwdLength = Number(pwdLength);
-
+  // check if it passes criteria
   if (
     pwdLength < 8 ||
     pwdLength > 128 ||
@@ -228,6 +223,7 @@ function numCheck() {
     );
     return numCheck();
   } else {
+    // have a little fun with the prompts
     if (pwdLength > 15) {
       alert("You password is going to be " + pwdLength + " characters long.  Good luck remembering that one! :)")
     } else {
@@ -236,7 +232,10 @@ function numCheck() {
       );
     }
   };
+
+  //go to generate the possible characters
   generatePwdArray();
+
 };
 
 btn.addEventListener("click", numCheck);
