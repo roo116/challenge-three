@@ -87,33 +87,22 @@ var spcChar = [
   "<",
   ".",
 ];
-var possibleCharacters = [];
-console.log("from initial declaration of variable " + possibleCharacters);
-// var questions ["How many characters do you want your password to be?", ""]
 //global variables
-var btn = document.querySelector("button");
 var pwdLength = 0;
+
+var possibleCharacters = [];
 var newPwd = [];
 var randomIdx = [];
 var randomEl = [];
-// var ucase = true;
-// var lcase = true;
 
-//prompt for the number of characters
-// function inputCheck (data) {
-//   if (!data) {
-//       confirm("You didn't enter anything. Try again!")
-//     if (!ask) {
-//       alert("Ok.  Have a great day!!!")
-//       return
-//     } el
+var btn = document.querySelector("button");
 
-// }
-
-function postThatPassword(newPwd) {
-  var showNewPwd = document.getAttribute("placeholder", string);
-  
-
+// display password to index.html
+function postThatPassword() {
+  debugger;
+  var showNewPwdTgt = document.querySelector("textarea");
+  showNewPwdTgt.textContent = newPwd
+  console.log(showNewPwd);
 }
 
 function makeThatPassword() {
@@ -143,14 +132,8 @@ console.log("new password values are " + newPwd);
 newPwd = newPwd.join('');
 alert("Your new password is " + newPwd);
 
+postThatPassword();
 
-  // newPwd = Array.join(randomLtr);
-  // console.log(newPwd);
- 
-  // newPwd = newPwd.push(randomIdx);
-  // console.log(newPwd);
-
-  // possibleCharactersArray.push(...numberArray)
 };
 
 function generatePwdArray() {
