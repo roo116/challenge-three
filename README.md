@@ -1,7 +1,7 @@
 # challenge-three
 
 Password Generator
-Site - https://roo116.github.io/challenge-three/
+Site - https://roo116.github.io/password-generator/
 
 Instructions:
 
