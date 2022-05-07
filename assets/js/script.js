@@ -110,6 +110,12 @@ var randomEl = [];
 
 // }
 
+function postThatPassword(newPwd) {
+  var showNewPwd = document.getAttribute("placeholder", string);
+  
+
+}
+
 function makeThatPassword() {
   generatePassword = [];
   newPwd = [];
@@ -135,6 +141,7 @@ console.log("new password values are " + newPwd);
 
 // ... and then joined into a string
 newPwd = newPwd.join('');
+alert("Your new password is " + newPwd);
 
 
   // newPwd = Array.join(randomLtr);
